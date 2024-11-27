@@ -37,20 +37,17 @@ def load_qrels(qrels_file):
     qrels = {}
     with open(qrels_file, 'r') as f:
         for line in f:
-            # Skip empty lines or lines that don't have the correct number of elements
+            
             if not line.strip():
                 continue
-
-            # Split the line into components
             parts = line.strip().split()
 
-            # Ensure there are exactly 4 components in each line
             if len(parts) != 4:
                 print(f"Skipping malformed line: {line.strip()}")
                 continue
 
             query_id, _, doc_id, relevance = parts
-            relevance = int(relevance)  # Convert relevance to integer
+            relevance = int(relevance)  
             if query_id not in qrels:
                 qrels[query_id] = {}
             qrels[query_id][doc_id] = relevance
@@ -61,7 +58,6 @@ def load_retrieved(retrieved_file):
     retrieved = {}
     with open(retrieved_file, 'r') as f:
         for line in f:
-            # Split the line into parts
             parts = line.strip().split()
 
             # Ensure that we unpack only the first, third, fourth, and fifth elements
@@ -71,22 +67,17 @@ def load_retrieved(retrieved_file):
                 rank_str = parts[3]  # Fourth element: rank (may contain unexpected characters)
                 score = parts[4]     # Fifth element: score
 
-                # Clean rank by removing any non-numeric characters
                 rank_str = re.sub(r'\D', '', rank_str)  # Remove all non-digit characters
-                
-                # Try to convert rank to an integer, handle errors gracefully
                 try:
                     rank = int(rank_str)  # Convert rank to integer
                 except ValueError:
-                    # Skip this line if rank is not a valid integer
                     print(f"Skipping line with invalid rank: {line.strip()}")
                     continue
                 
-                # Try to convert score to float
+
                 try:
                     score = float(score)  # Convert score to float
                 except ValueError:
-                    # Skip this line if score is not a valid float
                     print(f"Skipping line with invalid score: {line.strip()}")
                     continue
 
@@ -112,15 +103,12 @@ def evaluate(qrels_file, retrieved_file, output_file):
             p_at_10 = precision_at_k(relevances)
             recip_rank = reciprocal_rank(relevances)
 
-            # Write results to the output file
             out_file.write(f"{query_id} {ndcg_score:.4f} {p_at_10:.4f} {recip_rank:.4f}\n")
 
 if __name__ == "__main__":
-    # Read command line arguments
     qrels_file = sys.argv[1]
     retrieved_file = sys.argv[2]
     output_file = sys.argv[3]
 
-    # Evaluate and output the results
     evaluate(qrels_file, retrieved_file, output_file)
 
