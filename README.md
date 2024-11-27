@@ -17,6 +17,7 @@ To run this project, follow these steps:
    ```bash
    git clone https://github.com/Shreya2803/Clinical-Trial-Retriever.git
 ## Important Installation to Run The Unipd.py file 
+Create a virtual environment and install important dependencies in the virtual environment.
 ```bash
 conda create --name disease python=3.8
 conda activate disease
@@ -37,3 +38,17 @@ Conda install pandas
 Conda install torch
 Conda install sentencepiece
 
+## Usage
+
+The Unipd.py script can be run in different modes based on the query expansion technique you'd like to apply. The script accepts one argument: the run mode.
+
+Run Modes:
+Run_1: Applies NLS (Named Entity Summarization) for query expansion.
+Run_2: Applies KS (Keyword Summarization) for query expansion.
+Run_3: Applies RM3 (Relevance Model 3) for query expansion.
+Run_4: Combines KS and RM3 for query expansion.
+Run_5: Uses T5 summarization after applying NLS for query expansion.
+
+Example : To apply NLS summarization(Run_1) :
+```bash
+python Unipd.py Run_name
