@@ -15,7 +15,7 @@ To run this project, follow these steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/disease-diagnosis-query-expansion.git
+   git clone https://github.com/Shreya2803/Clinical-Trial-Retriever.git
 ## Important Installation to Run The Unipd.py file 
 ```bash
 conda create --name disease python=3.8
