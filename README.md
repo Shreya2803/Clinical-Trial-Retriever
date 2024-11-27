@@ -37,7 +37,7 @@ Conda install nltk
 Conda install pandas
 Conda install torch
 Conda install sentencepiece
-
+```
 ## Usage
 
 The Unipd.py script can be run in different modes based on the query expansion technique you'd like to apply. The script accepts one argument: the run mode.
@@ -51,4 +51,11 @@ Run_5: Uses T5 summarization after applying NLS for query expansion.
 
 Example : To apply NLS summarization(Run_1) :
 ```bash
-python Unipd.py Run_name
+python Unipd.py Run_1
+```
+To apply KS (Keyword Summarization)/Run_2:
+```bash
+python Unipd.py Run_2
+```
+## Step By step Process:
+1. Download all the zip files/documents from  2023 Clinical Trials Track[https://www.trec-cds.org/2023.html].
